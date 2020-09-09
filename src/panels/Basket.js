@@ -131,8 +131,14 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
               setTime(event.target.value);
             }}
             onBlur={() => {
-              if (time) {
+              if (
+                time &&
+                time.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/) !== null
+              ) {
                 setFaster(false);
+              } else {
+                setFaster(true);
+                setTime("");
               }
             }}
           />
